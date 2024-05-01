@@ -53,6 +53,8 @@ fun ArticleCard(
             contentDescription = null
         )
 
+        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier

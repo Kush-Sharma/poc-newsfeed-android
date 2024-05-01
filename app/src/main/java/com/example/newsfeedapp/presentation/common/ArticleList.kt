@@ -37,8 +37,6 @@ fun ArticleList(
     }
 }
 
-}
-
 @Composable
 fun handlePagingResult(
     articles: LazyPagingItems<Article>
