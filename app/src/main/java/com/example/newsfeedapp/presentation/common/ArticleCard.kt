@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,19 +22,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.newsfeedapp.R
 import com.example.newsfeedapp.domain.model.Article
 import com.example.newsfeedapp.domain.model.Source
 import com.example.newsfeedapp.presentation.Dimens.ArticleCardSize
+import com.example.newsfeedapp.presentation.Dimens.ExtraSmallIconSize
 import com.example.newsfeedapp.presentation.Dimens.ExtraSmallPadding
 import com.example.newsfeedapp.presentation.Dimens.ExtraSmallPadding2
-import com.example.newsfeedapp.presentation.Dimens.SmallIconSize
 import com.example.newsfeedapp.presentation.Dimens.SmallPadding
 import com.example.newsfeedapp.ui.theme.NewsFeedAppTheme
 
@@ -80,9 +80,9 @@ fun ArticleCard(
                 Spacer(modifier = Modifier.width(SmallPadding))
 
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    imageVector = Icons.Default.Create,
                     contentDescription = null,
-                    modifier = Modifier.size(SmallIconSize),
+                    modifier = Modifier.size(ExtraSmallIconSize),
                     tint = MaterialTheme.colorScheme.secondary
                 )
 

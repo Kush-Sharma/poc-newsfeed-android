@@ -11,12 +11,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -26,6 +32,7 @@ import com.example.newsfeedapp.R
 import com.example.newsfeedapp.domain.model.Article
 import com.example.newsfeedapp.presentation.Dimens.ExtraSmallPadding2
 import com.example.newsfeedapp.presentation.Dimens.MediumPadding1
+import com.example.newsfeedapp.presentation.Dimens.SmallPadding
 import com.example.newsfeedapp.presentation.common.ArticleList
 import com.example.newsfeedapp.presentation.common.SearchBar
 import com.example.newsfeedapp.presentation.navgraph.Route
@@ -41,7 +48,7 @@ fun HomeScreen(
             if (articles.itemCount > 10) {
                 articles.itemSnapshotList.items
                     .slice(IntRange(start = 0, endInclusive = 9))
-                    .joinToString(separator = " \uD83d\uDFE5 ") { it.title }
+                    .joinToString(separator = "  \uD83d\uDFE5  ") { it.title }
             } else {
                 ""
             }
@@ -55,12 +62,14 @@ fun HomeScreen(
             .statusBarsPadding()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            imageVector = Icons.Default.Home,
             contentDescription = null,
             modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
-                .padding(horizontal = MediumPadding1)
+                .width(60.dp)
+                .height(40.dp)
+                .padding(horizontal = SmallPadding),
+            contentScale = ContentScale.Fit,
+            colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.primary)
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))

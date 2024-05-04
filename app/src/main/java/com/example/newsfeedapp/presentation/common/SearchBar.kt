@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.example.newsfeedapp.R
 import com.example.newsfeedapp.presentation.Dimens.ExtraSmallPadding2
 import com.example.newsfeedapp.presentation.Dimens.LargeIconSize
+import com.example.newsfeedapp.presentation.Dimens.MediumIconSize
 import com.example.newsfeedapp.presentation.Dimens.SmallPadding
 import com.example.newsfeedapp.ui.theme.NewsFeedAppTheme
 
@@ -75,7 +78,7 @@ fun SearchBar(
             readOnly = readOnly,
             leadingIcon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    imageVector = Icons.Default.Search,
                     contentDescription = null,
                     modifier = Modifier
                         .size(LargeIconSize)

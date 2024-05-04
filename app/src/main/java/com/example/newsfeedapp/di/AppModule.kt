@@ -11,6 +11,7 @@ import com.example.newsfeedapp.domain.usecases.appentry.FetchAppEntry
 import com.example.newsfeedapp.domain.usecases.appentry.SaveAppEntry
 import com.example.newsfeedapp.domain.usecases.news.GetNews
 import com.example.newsfeedapp.domain.usecases.news.NewsUseCases
+import com.example.newsfeedapp.domain.usecases.news.SearchNews
 import com.example.newsfeedapp.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -61,7 +62,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository = newsRepository)
+            getNews = GetNews(newsRepository = newsRepository),
+            searchNews = SearchNews(newsRepository = newsRepository)
         )
     }
 }
