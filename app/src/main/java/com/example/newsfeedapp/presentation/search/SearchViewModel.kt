@@ -1,8 +1,7 @@
 package com.example.newsfeedapp.presentation.search
 
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -15,13 +14,13 @@ class SearchViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases
 ) : ViewModel() {
 
-    private var state by mutableStateOf(SearchState())
-        private set
+    private var _state = mutableStateOf(SearchState())
+    val state: State<SearchState> = _state
 
     fun onEvent(event: SearchEvent) {
         when (event) {
             is SearchEvent.UpdateSearchQuery -> {
-                state = state.copy(searchQuery = event.searchQuery)
+                _state.value = _state.value.copy(searchQuery = event.searchQuery)
             }
 
             is SearchEvent.searchNews -> {
@@ -32,10 +31,10 @@ class SearchViewModel @Inject constructor(
 
     private fun searchNews() {
         val articles = newsUseCases.searchNews(
-            searchQuery = state.searchQuery,
+            searchQuery = state.value.searchQuery,
             sources = listOf("bbc-news", "al-jazeera-english", "fox-news")
         ).cachedIn(viewModelScope)
-        state = state.copy(articles = articles)
+        _state.value = _state.value.copy(articles = articles)
     }
 
 }

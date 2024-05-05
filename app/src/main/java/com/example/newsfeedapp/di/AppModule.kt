@@ -13,9 +13,13 @@ import com.example.newsfeedapp.domain.repository.NewsRepository
 import com.example.newsfeedapp.domain.usecases.appentry.AppEntryUseCases
 import com.example.newsfeedapp.domain.usecases.appentry.FetchAppEntry
 import com.example.newsfeedapp.domain.usecases.appentry.SaveAppEntry
+import com.example.newsfeedapp.domain.usecases.news.DeleteArticle
+import com.example.newsfeedapp.domain.usecases.news.FetchArticle
+import com.example.newsfeedapp.domain.usecases.news.FetchArticles
 import com.example.newsfeedapp.domain.usecases.news.GetNews
 import com.example.newsfeedapp.domain.usecases.news.NewsUseCases
 import com.example.newsfeedapp.domain.usecases.news.SearchNews
+import com.example.newsfeedapp.domain.usecases.news.UpsertArticle
 import com.example.newsfeedapp.util.Constants.BASE_URL
 import com.example.newsfeedapp.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
@@ -58,8 +62,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi = newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi = newsApi, newsDao = newsDao)
 
     @Provides
     @Singleton
@@ -68,7 +73,11 @@ object AppModule {
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository = newsRepository),
-            searchNews = SearchNews(newsRepository = newsRepository)
+            searchNews = SearchNews(newsRepository = newsRepository),
+            upsertArticle = UpsertArticle(newsRepository = newsRepository),
+            deleteArticle = DeleteArticle(newsRepository = newsRepository),
+            fetchArticles = FetchArticles(newsRepository = newsRepository),
+            fetchArticle = FetchArticle(newsRepository = newsRepository)
         )
     }
 
