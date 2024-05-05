@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
-                viewModel.splashCondition
+                viewModel.splashCondition.value
             }
         }
 
@@ -47,8 +47,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val startDestination = viewModel.startDestination
-                    NavGraph(startDestination = startDestination)
+                    NavGraph(startDestination = viewModel.startDestination.value)
                 }
             }
         }

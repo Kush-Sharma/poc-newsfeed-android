@@ -11,6 +11,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.newsfeedapp.MainViewModel
 import com.example.newsfeedapp.presentation.home.HomeScreen
 import com.example.newsfeedapp.presentation.home.HomeViewModel
+import com.example.newsfeedapp.presentation.navigator.NewsNavigator
 import com.example.newsfeedapp.presentation.onboarding.OnBoardingScreen
 import com.example.newsfeedapp.presentation.onboarding.OnBoardingViewModel
 
@@ -37,14 +38,11 @@ fun NavGraph(
         }
 
         navigation(
-            route = Route.NewsNavigation.route, startDestination = Route.NewsNavigatorScreen.route
+            route = Route.NewsNavigation.route,
+            startDestination = Route.NewsNavigatorScreen.route
         ) {
-            composable(
-                route = Route.NewsNavigatorScreen.route
-            ) {
-                val viewModel: HomeViewModel = hiltViewModel()
-                val articles = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(articles = articles, navigate = {})
+            composable( route = Route.NewsNavigatorScreen.route) {
+                NewsNavigator()
             }
         }
     }
